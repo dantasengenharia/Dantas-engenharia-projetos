@@ -537,22 +537,27 @@ document.getElementById("orcamento").addEventListener("submit", function(e) {
     SOLICITAR ORÇAMENTO
   </a>
 <div style="max-width:900px;margin:30px auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;">
-  <div style="border:1px solid #d6ad55;padding:20px;border-radius:10px;">
+
+  <button type="button" onclick="window.iniciarAnaResidencial('construção de casa')" style="border:1px solid #d6ad55;padding:20px;border-radius:10px;background:#171717;color:white;cursor:pointer;text-align:left;">
     <h3 style="color:#d6ad55;">Construção de casa</h3>
     <p>Planejamento e projetos para sua casa nova.</p>
-  </div>
-  <div style="border:1px solid #d6ad55;padding:20px;border-radius:10px;">
+  </button>
+
+  <button type="button" onclick="window.iniciarAnaResidencial('reforma residencial')" style="border:1px solid #d6ad55;padding:20px;border-radius:10px;background:#171717;color:white;cursor:pointer;text-align:left;">
     <h3 style="color:#d6ad55;">Reforma residencial</h3>
     <p>Orientação e projetos para renovar seu imóvel.</p>
-  </div>
-  <div style="border:1px solid #d6ad55;padding:20px;border-radius:10px;">
+  </button>
+
+  <button type="button" onclick="window.iniciarAnaResidencial('ampliação de imóvel')" style="border:1px solid #d6ad55;padding:20px;border-radius:10px;background:#171717;color:white;cursor:pointer;text-align:left;">
     <h3 style="color:#d6ad55;">Ampliação de imóvel</h3>
     <p>Planejamento para ampliar sua casa com segurança.</p>
-  </div>
-  <div style="border:1px solid #d6ad55;padding:20px;border-radius:10px;">
+  </button>
+
+  <button type="button" onclick="window.iniciarAnaResidencial('projetos residenciais')" style="border:1px solid #d6ad55;padding:20px;border-radius:10px;background:#171717;color:white;cursor:pointer;text-align:left;">
     <h3 style="color:#d6ad55;">Projetos residenciais</h3>
     <p>Conte sua ideia e converse com nossa equipe.</p>
-  </div>
+  </button>
+
 </div>
 </section>
 </body>
