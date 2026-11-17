@@ -230,7 +230,7 @@ Melhor horário: ${lead.horario || "Não informado"}`;
     awaiting = "";
     finish();
   }
-}
+
 }
 
 window.iniciarAnaResidencial = function(servico) {
