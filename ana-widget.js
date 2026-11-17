@@ -13,7 +13,7 @@
 
   const style = document.createElement("style");
   style.textContent = `
-    #ana-launch{position:fixed;right:22px;bottom:90px;z-index:99999;border:0;border-radius:999px;
+    #ana-launch{position:fixed;right:22px;bottom:120px;z-index:99999;border:0;border-radius:999px;
       padding:14px 20px;background:#d6ad55;color:#101010;font:700 15px Arial;cursor:pointer;
       box-shadow:0 5px 22px #0005}
     #ana-panel{position:fixed;right:22px;bottom:150px;z-index:99999;width:min(360px,calc(100vw - 28px));
