@@ -121,9 +121,18 @@
       {label:"Voltar ao início", action:home}
     ]);
   }
-  function makeText() {
-    return `Olá! Gostaria de atendimento da Dantas Engenharia e Projetos.\n\nNome: ${lead.nome}\nCidade: ${lead.cidade}\nServiço/projeto: ${lead.servico}\nDetalhes: ${lead.detalhes || "Não informado"}\nMelhor horário: ${lead.horario || "Não informado"}`;
-  }
+ function makeText() {
+  return `Olá! Gostaria de atendimento da Dantas Engenharia e Projetos.
+
+Nome: ${lead.nome}
+Cidade: ${lead.cidade}
+Serviço/projeto: ${lead.servico}
+Possui terreno: ${lead.terreno || "Não informado"}
+Tipo de reforma: ${lead.tipoReforma || "Não informado"}
+Metragem: ${lead.metragem || "Não informado"}
+Detalhes: ${lead.detalhes || "Não informado"}
+Melhor horário: ${lead.horario || "Não informado"}`;
+}
   function whatsapp(text) {
     message("Escolha por qual WhatsApp deseja continuar. A mensagem só será enviada quando você confirmar no WhatsApp.");
     buttons(WHATSAPP.map(w => ({
@@ -183,17 +192,45 @@
     return;
   }
 
-  lead[awaiting] = v;
+ lead[awaiting] = v;
   const current = awaiting;
 
-  if (current === "nome") ask("cidade", "Obrigado, " + v + "! Em qual cidade você precisa do atendimento?");
-  else if (current === "cidade") ask("servico", "Qual serviço ou projeto você deseja realizar?");
-  else if (current === "servico") ask("detalhes", "Conte mais alguns detalhes (medidas, finalidade ou situação atual). Se preferir, escreva 'não sei informar'.");
-  else if (current === "detalhes") ask("horario", "Qual o melhor horário para nossa equipe entrar em contato? (Opcional: pode escrever 'qualquer horário'.)");
+  if (current === "nome") {
+    ask("cidade", "Obrigado, " + v + "! Em qual cidade você precisa do atendimento?");
+  }
+  else if (current === "cidade") {
+    const servico = (lead.servico || "").toLowerCase();
+
+    if (servico.includes("construção")) {
+      ask("terreno", "Você já possui um terreno para construir? Responda sim, não ou ainda estou procurando.");
+    }
+    else if (servico.includes("reforma")) {
+      ask("tipoReforma", "Qual tipo de reforma pretende realizar? Conte quais ambientes ou partes do imóvel deseja reformar.");
+    }
+    else if (servico.includes("ampliação")) {
+      ask("metragem", "Qual é a área atual do imóvel e quanto pretende ampliar? Se não souber, pode informar uma estimativa.");
+    }
+    else {
+      ask("servico", "Qual serviço ou projeto residencial você deseja realizar?");
+    }
+  }
+  else if (current === "servico") {
+    ask("detalhes", "Conte mais detalhes sobre sua ideia, medidas ou finalidade do projeto.");
+  }
+  else if (current === "terreno") {
+    ask("metragem", "Qual é a metragem aproximada do terreno ou da construção desejada?");
+  }
+  else if (current === "tipoReforma" || current === "metragem") {
+    ask("detalhes", "Há mais alguma informação importante sobre o imóvel ou o projeto?");
+  }
+  else if (current === "detalhes") {
+    ask("horario", "Qual o melhor horário para nossa equipe entrar em contato? Pode escrever 'qualquer horário'.");
+  }
   else {
     awaiting = "";
     finish();
   }
+}
 }
 
 window.iniciarAnaResidencial = function(servico) {
