@@ -89,10 +89,10 @@
     input.placeholder = "Digite sua resposta...";
     message("Olá! Sou a ANA, assistente comercial da Dantas Engenharia e Projetos. Como posso ajudar?");
     buttons([
-      {label:"Solicitar orçamento", action:()=>startLead()},
-      {label:"Informações sobre serviços", action:()=>services()},
-      {label:"Falar com a equipe", action:()=>whatsapp("Olá! Gostaria de falar com a equipe da Dantas Engenharia e Projetos.")}
-    ]);
+     {label:"Solicitar orçamento", action:()=>startLead()},
+  {label:"Ver nossos serviços", action:()=>services()},
+  {label:"Falar com a equipe", action:()=>whatsapp("Olá! Gostaria de falar com a equipe da Dantas Engenharia e Projetos.")}
+]);
   }
   function startLead() {
     Object.keys(lead).forEach(k => lead[k] = "");
