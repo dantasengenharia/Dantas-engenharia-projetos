@@ -181,7 +181,12 @@
   }
 }
 
-  launch.addEventListener("click",()=>{panel.style.display="flex"; if(!chat.childElementCount) home();});
+window.iniciarAnaResidencial = function(servico) {
+  panel.style.display = "flex";
+  if (!chat.childElementCount) home();
+  startLead(servico);
+};  
+   launch.addEventListener("click",()=>{panel.style.display="flex"; if(!chat.childElementCount) home();});
   panel.querySelector("#ana-close").addEventListener("click",()=>panel.style.display="none");
   form.addEventListener("submit",e=>{e.preventDefault();submit(input.value);input.value="";});
 })();
