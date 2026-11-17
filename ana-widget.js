@@ -124,18 +124,62 @@
       action:()=>window.open("https://wa.me/"+w.number+"?text="+encodeURIComponent(text),"_blank","noopener")
     })).concat([{label:"Recomeçar",action:home}]));
   }
-  function submit(value) {
-    const v = value.trim();
-    if (!v || !awaiting) return;
-    message(v,"user");
-    lead[awaiting] = v;
-    const current = awaiting;
-    if (current === "nome") ask("cidade","Obrigado, "+v+"! Em qual cidade você precisa do atendimento?");
-    else if (current === "cidade") ask("servico","Qual serviço ou projeto você deseja realizar?");
-    else if (current === "servico") ask("detalhes","Conte mais alguns detalhes (medidas, finalidade ou situação atual). Se preferir, escreva 'não sei informar'.");
-    else if (current === "detalhes") ask("horario","Qual o melhor horário para nossa equipe entrar em contato? (Opcional: pode escrever 'qualquer horário'.)");
-    else { awaiting = ""; finish(); }
+ function submit(value) {
+  const v = value.trim();
+  if (!v) return;
+
+  message(v, "user");
+
+  if (!awaiting) {
+    const q = v.toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    options.replaceChildren();
+
+    let answer = "";
+
+    if (q.includes("horario") || q.includes("funcionamento") || q.includes("abre") || q.includes("fecha")) {
+      answer = "Nosso horário de atendimento é das 08:00 às 12:00 e das 13:00 às 18:00.";
+    }
+    else if (q.includes("servico") || q.includes("trabalha") || q.includes("oferece")) {
+      answer = "A Dantas Engenharia e Projetos atua na área de engenharia e projetos. Conte qual serviço você procura para que eu possa orientar você corretamente.";
+    }
+    else if (q.includes("sugest") || q.includes("projeto") || q.includes("construir") || q.includes("obra")) {
+      answer = "Será um prazer ajudar! Você pretende realizar um projeto residencial, comercial, rural ou outro tipo de obra? Conte um pouco sobre sua ideia.";
+    }
+    else if (q.includes("orcamento") || q.includes("preco") || q.includes("valor")) {
+      message("Posso iniciar seu atendimento para orçamento!");
+      startLead();
+      return;
+    }
+    else if (q.includes("equipe") || q.includes("atendente") || q.includes("humano")) {
+      answer = "Claro! Você pode falar diretamente com nossa equipe pelos nossos canais de WhatsApp.";
+      buttons(WHATSAPP.map(w => ({
+        label: w.label,
+        action: () => window.open("https://wa.me/" + w.number, "_blank", "noopener")
+      })));
+    }
+    else {
+      answer = "Entendi! Pode me contar um pouco mais sobre o que você precisa? Vou ajudar você a encontrar o melhor caminho para seu projeto.";
+    }
+
+    if (answer) message(answer);
+    return;
   }
+
+  lead[awaiting] = v;
+  const current = awaiting;
+
+  if (current === "nome") ask("cidade", "Obrigado, " + v + "! Em qual cidade você precisa do atendimento?");
+  else if (current === "cidade") ask("servico", "Qual serviço ou projeto você deseja realizar?");
+  else if (current === "servico") ask("detalhes", "Conte mais alguns detalhes (medidas, finalidade ou situação atual). Se preferir, escreva 'não sei informar'.");
+  else if (current === "detalhes") ask("horario", "Qual o melhor horário para nossa equipe entrar em contato? (Opcional: pode escrever 'qualquer horário'.)");
+  else {
+    awaiting = "";
+    finish();
+  }
+}
 
   launch.addEventListener("click",()=>{panel.style.display="flex"; if(!chat.childElementCount) home();});
   panel.querySelector("#ana-close").addEventListener("click",()=>panel.style.display="none");
