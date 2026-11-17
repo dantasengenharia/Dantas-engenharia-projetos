@@ -13,10 +13,10 @@
 
   const style = document.createElement("style");
   style.textContent = `
-    #ana-launch{position:fixed;right:22px;bottom:22px;z-index:99999;border:0;border-radius:999px;
+    #ana-launch{position:fixed;right:22px;bottom:90px;z-index:99999;border:0;border-radius:999px;
       padding:14px 20px;background:#d6ad55;color:#101010;font:700 15px Arial;cursor:pointer;
       box-shadow:0 5px 22px #0005}
-    #ana-panel{position:fixed;right:22px;bottom:82px;z-index:99999;width:min(360px,calc(100vw - 28px));
+    #ana-panel{position:fixed;right:22px;bottom:150px;z-index:99999;width:min(360px,calc(100vw - 28px));
       height:min(540px,calc(100vh - 115px));display:none;flex-direction:column;overflow:hidden;
       border:1px solid #b99142;border-radius:16px;background:#111;color:#f5f1e8;
       box-shadow:0 10px 35px #0008;font:14px Arial,sans-serif}
