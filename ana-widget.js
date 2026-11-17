@@ -233,11 +233,13 @@ Melhor horário: ${lead.horario || "Não informado"}`;
 
 }
 
-window.iniciarAnaResidencial = function(servico) {
+window.iniciarAnaResidencial = (servico) => {
   panel.style.display = "flex";
-  if (!chat.childElementCount) home();
+  if (!chat.childElementCount) {
+    home();
+  }
   startLead(servico);
-};  
+};
    launch.addEventListener("click",()=>{panel.style.display="flex"; if(!chat.childElementCount) home();});
   panel.querySelector("#ana-close").addEventListener("click",()=>panel.style.display="none");
   form.addEventListener("submit",e=>{e.preventDefault();submit(input.value);input.value="";});
