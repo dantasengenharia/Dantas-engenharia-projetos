@@ -57,7 +57,16 @@
   const options = panel.querySelector("#ana-options");
   const form = panel.querySelector("#ana-entry");
   const input = panel.querySelector("#ana-input");
-  const lead = { nome:"", cidade:"", servico:"", detalhes:"", horario:"" };
+  const lead = {
+  nome: "",
+  cidade: "",
+  servico: "",
+  detalhes: "",
+  horario: "",
+  terreno: "",
+  metragem: "",
+  tipoReforma: ""
+};
   let awaiting = "";
 
   function message(text, who="bot") {
@@ -94,10 +103,16 @@
   {label:"Falar com a equipe", action:()=>whatsapp("Olá! Gostaria de falar com a equipe da Dantas Engenharia e Projetos.")}
 ]);
   }
-  function startLead() {
-    Object.keys(lead).forEach(k => lead[k] = "");
-    ask("nome","Será um prazer ajudar. Qual é o seu nome?");
+ function startLead(servicoInicial = "") {
+  Object.keys(lead).forEach(k => lead[k] = "");
+  lead.servico = servicoInicial;
+
+  if (servicoInicial) {
+    ask("nome", "Vamos começar seu atendimento sobre " + servicoInicial + ". Qual é o seu nome?");
+  } else {
+    ask("nome", "Será um prazer ajudar. Qual é o seu nome?");
   }
+}
   function services() {
     message("Podemos orientar seu primeiro contato sobre projetos e serviços de engenharia. Para confirmar se atendemos sua necessidade, conte um pouco sobre o que você procura.");
     buttons([
