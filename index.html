@@ -336,7 +336,78 @@ footer strong {
 /* Ajuste de posição da Ana */
 
 </style>
+<style>
+.mansion-slider {
+  width: 100%;
+  height: 85vh;
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  background: #080808;
+}
 
+.mansion-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mansion-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.mansion-caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 25px;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,.65),
+    rgba(0,0,0,.15),
+    rgba(0,0,0,.55)
+  );
+}
+
+.mansion-caption h2 {
+  color: #e1bd72;
+  font-size: clamp(30px, 5vw, 58px);
+  max-width: 900px;
+  text-shadow: 0 3px 15px #000;
+}
+
+.mansion-caption p {
+  font-size: 19px;
+  text-shadow: 0 2px 8px #000;
+}
+
+.mansion-caption a {
+  margin-top: 20px;
+  padding: 15px 28px;
+  background: #d6ad55;
+  color: #111;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+@media(max-width:600px) {
+  .mansion-slider {
+    height: 70vh;
+    min-height: 430px;
+  }
+}
+</style>
 
 </head>
 
@@ -379,7 +450,17 @@ footer strong {
   </div>
 </section>
 
-<section class="about" id="empresa">
+<section class="mansion-slider">
+  <div class="mansion-slide active">
+    <img src="MANSÃO-IMAGEM-1" alt="Mansão moderna">
+    <div class="mansion-caption">
+      <h2>Projetos Residenciais de Alto Padrão</h2>
+      <p>Transformamos sonhos em grandes projetos.</p>
+      <a href="#contato">Solicite seu projeto</a>
+    </div>
+  </div>
+</section>
+  <section class="about" id="empresa">
   <div class="about-content">
     <div class="tag">QUEM SOMOS</div>
     <h2>Sobre a <span>Dantas Engenharia</span></h2>
