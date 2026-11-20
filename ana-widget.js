@@ -176,9 +176,7 @@ Melhor horário: ${lead.horario || "Não informado"}`;
 
     options.replaceChildren();
 
-    let answer = "";
-
-    let answer = "";
+let answer = "";
 
     if (/^(oi|ola|opa|e ai)[!,. ]*$/.test(q)) {
       answer = "Olá! Seja muito bem-vindo(a) à Dantas Engenharia e Projetos! 😊 Como posso ajudar você hoje?";
@@ -196,9 +194,8 @@ Melhor horário: ${lead.horario || "Não informado"}`;
       answer = "Tudo ótimo por aqui! E você? 😊";
     }
     else if (q.includes("horario") || q.includes("funcionamento") || q.includes("abre") || q.includes("fecha")) {
-      answer = "Nosso horário de atendimento é das 08:00 às 12:00 e das 13:00 às 18:00.";
+      answer = "Nosso horário de atendimento é das 08:00 às 12:00 e das 13:0180 às :00.";
     }
-      answer = "Nosso horário de atendimento é das 08:00 às 12:00 e das 13:00 às 18:00.";
     }
     else if (q.includes("servico") || q.includes("trabalha") || q.includes("oferece")) {
       answer = "A Dantas Engenharia e Projetos atua na área de engenharia e projetos. Conte qual serviço você procura para que eu possa orientar você corretamente.";
