@@ -178,7 +178,26 @@ Melhor horário: ${lead.horario || "Não informado"}`;
 
     let answer = "";
 
-    if (q.includes("horario") || q.includes("funcionamento") || q.includes("abre") || q.includes("fecha")) {
+    let answer = "";
+
+    if (/^(oi|ola|opa|e ai)[!,. ]*$/.test(q)) {
+      answer = "Olá! Seja muito bem-vindo(a) à Dantas Engenharia e Projetos! 😊 Como posso ajudar você hoje?";
+    }
+    else if (q.includes("bom dia")) {
+      answer = "Bom dia! Que bom receber você! 😊 Como posso ajudar?";
+    }
+    else if (q.includes("boa tarde")) {
+      answer = "Boa tarde! É um prazer receber você! Como posso ajudar?";
+    }
+    else if (q.includes("boa noite")) {
+      answer = "Boa noite! Seja muito bem-vindo(a)! Como posso ajudar?";
+    }
+    else if (q.includes("tudo bem") || q.includes("tudo bom")) {
+      answer = "Tudo ótimo por aqui! E você? 😊";
+    }
+    else if (q.includes("horario") || q.includes("funcionamento") || q.includes("abre") || q.includes("fecha")) {
+      answer = "Nosso horário de atendimento é das 08:00 às 12:00 e das 13:00 às 18:00.";
+    }
       answer = "Nosso horário de atendimento é das 08:00 às 12:00 e das 13:00 às 18:00.";
     }
     else if (q.includes("servico") || q.includes("trabalha") || q.includes("oferece")) {
