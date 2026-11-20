@@ -35,6 +35,21 @@
     #ana-entry{display:flex;gap:7px;padding:0 12px 12px}
     #ana-input{min-width:0;flex:1;border:1px solid #666;border-radius:8px;padding:10px;background:#222;color:#fff}
     #ana-send{border:0;border-radius:8px;padding:0 14px;background:#d6ad55;color:#111;font-weight:700}
+  @media (min-width: 768px) {
+      #ana-panel {
+        width: min(650px, calc(100vw - 60px));
+        height: min(750px, calc(100vh - 80px));
+        right: 30px;
+        bottom: 30px;
+      }
+      #ana-input {
+        min-height: 48px;
+        font-size: 16px;
+      }
+      #ana-send {
+        min-height: 48px;
+      }
+    }
   `;
   document.head.appendChild(style);
 
@@ -244,3 +259,4 @@ window.iniciarAnaResidencial = (servico) => {
   panel.querySelector("#ana-close").addEventListener("click",()=>panel.style.display="none");
   form.addEventListener("submit",e=>{e.preventDefault();submit(input.value);input.value="";});
 })();
+
