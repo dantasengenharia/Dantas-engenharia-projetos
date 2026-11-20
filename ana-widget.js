@@ -83,7 +83,7 @@
   tipoReforma: ""
 };
   let awaiting = "";
-
+let lastQuestion = "";
   function message(text, who="bot") {
     const el = document.createElement("div");
     el.className = "ana-msg " + (who === "user" ? "ana-user" : "ana-bot");
@@ -102,7 +102,8 @@
   }
   function ask(field, prompt) {
     awaiting = field;
-    message(prompt);
+    lastQuestion = field;
+     message(prompt);
     options.replaceChildren();
     input.value = "";
     input.placeholder = "Digite aqui...";
@@ -248,9 +249,22 @@ let answer = "";
   else if (current === "servico") {
     ask("detalhes", "Conte mais detalhes sobre sua ideia, medidas ou finalidade do projeto.");
   }
-  else if (current === "terreno") {
-    ask("metragem", "Qual é a metragem aproximada do terreno ou da construção desejada?");
+ else if (current === "terreno") {
+  const resposta = v.toLowerCase();
+
+  if (resposta.includes("sim")) {
+    ask("metragem", "Excelente! Qual é a metragem aproximada do terreno?");
   }
+  else if (resposta.includes("não") || resposta.includes("nao")) {
+    ask("detalhes", "Sem problemas! Você já tem uma região ou cidade em mente para construir?");
+  }
+  else if (resposta.includes("procurando")) {
+    ask("detalhes", "Entendi! Podemos ajudar você a planejar sua construção. Em qual cidade pretende construir?");
+  }
+  else {
+    ask("terreno", "Por favor, responda se já possui terreno, não possui ou ainda está procurando.");
+  }
+}
   else if (current === "tipoReforma" || current === "metragem") {
     ask("detalhes", "Há mais alguma informação importante sobre o imóvel ou o projeto?");
   }
