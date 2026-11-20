@@ -194,7 +194,7 @@ let answer = "";
       answer = "Tudo ótimo por aqui! E você? 😊";
     }
     else if (q.includes("horario") || q.includes("funcionamento") || q.includes("abre") || q.includes("fecha")) {
-      answer = "Nosso horário de atendimento é das 08:00 às 12:00 e das 13:0180 às :00.";
+      answer = "Nosso horário de atendimento é das 08:00 às 12:00 e das 13:00 às 18:00.";
     }
     }
     else if (q.includes("servico") || q.includes("trabalha") || q.includes("oferece")) {
